@@ -40,6 +40,7 @@ function criarFormularioDreVazio() {
     destaqueAnalitica: false,
     ignoraZeramento: false,
     periodoAtual: false,
+    extenso: false,
   };
 }
 

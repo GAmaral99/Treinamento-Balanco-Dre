@@ -883,6 +883,96 @@
   margin: 2px 0 0;
 }
 
+/* ---------------------------------------------------------
+   win95-footer com 3 elementos (voltar | status | btns)
+   --------------------------------------------------------- */
+
+.win95-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+/* ---------------------------------------------------------
+   Tutorial interativo (tópico Encerramento do período)
+   --------------------------------------------------------- */
+
+.tut-wrap {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: 16px 18px;
+  margin-bottom: 14px;
+}
+
+.tut-titulo {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.tut-step {
+  display: none;
+}
+
+.tut-step.is-active {
+  display: block;
+}
+
+.tut-instrucao {
+  font-size: 13.5px;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.tut-lista {
+  list-style: disc;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+.tut-img-wrap {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.tut-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tut-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tut-indicador {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  flex: 1;
+  text-align: center;
+}
+
 .win95-input:focus {
   outline: 1px solid #2a4a8a;
   border-color: #2a4a8a;
@@ -962,17 +1052,6 @@
 }
 
 /* Rodapé: status + botões */
-.win95-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
-  margin-top: 2px;
-}
-
 .win95-status {
   font-family: var(--font-mono);
   font-size: 12px;

@@ -66,6 +66,11 @@ const Screens = (() => {
     });
 
     botao.addEventListener("click", () => Navigation.goTo("balanco"));
+
+    // Ao voltar para esta tela, restaura a seleção anterior
+    if (State.empresaSelecionada) {
+      selecionar(State.empresaSelecionada.codigo);
+    }
   }
 
   /* -------------------------------------------------------
@@ -253,6 +258,7 @@ const Screens = (() => {
 
             <!-- Rodapé -->
             <div class="win95-footer">
+              <button class="btn btn-ghost" id="btnVoltarBalanco">← Voltar</button>
               <span class="win95-status" id="balancoStatus">0 de ${totalItens} itens corretos</span>
               <div class="win95-footer-btns">
                 <button class="btn btn-ghost" id="btnVerificarBalanco">Verificar configuração</button>
@@ -347,6 +353,7 @@ const Screens = (() => {
 
     container.addEventListener("input",  atualizar);
     container.addEventListener("change", atualizar);
+    document.getElementById("btnVoltarBalanco").addEventListener("click", () => Navigation.goTo("empresa"));
     document.getElementById("btnVerificarBalanco").addEventListener("click", () => {
       atualizar();
       const pendente = container.querySelector("#balancoStepsList li:not(.is-ok)");
@@ -385,6 +392,8 @@ const Screens = (() => {
     const form = State.dreForm;
 
     const EXTENSO_TEXTO_DRE = "↵ Extenso Padrão SCI - Demonstração do Resultado do Exercício";
+    const PASSO_EXTENSO_DRE = "dreExtenso";
+    const totalDre = config.passos.length + 1; // +1 extenso
 
     container.innerHTML = `
       <div class="screen-head">
@@ -397,7 +406,7 @@ const Screens = (() => {
       <div class="work-grid">
         <div class="card steps-card">
           <h3>Passo a passo</h3>
-          <p class="progresso" id="dreProgresso">0 de ${config.passos.length} corretos</p>
+          <p class="progresso" id="dreProgresso">0 de ${totalDre} corretos</p>
           <ul class="steps-list" id="dreStepsList">
             ${config.passos
               .map(
@@ -408,6 +417,10 @@ const Screens = (() => {
                 </li>`
               )
               .join("")}
+            <li data-passo="${PASSO_EXTENSO_DRE}">
+              <span class="mark">✓</span>
+              <span>Marcar <strong>Extenso</strong> e confirmar o modelo padrão</span>
+            </li>
           </ul>
         </div>
 
@@ -629,7 +642,8 @@ const Screens = (() => {
 
             <!-- Rodapé -->
             <div class="win95-footer">
-              <span class="win95-status" id="dreStatus">0 de ${config.passos.length} itens corretos</span>
+              <button class="btn btn-ghost" id="btnVoltarDre">← Voltar</button>
+              <span class="win95-status" id="dreStatus">0 de ${totalDre} itens corretos</span>
               <div class="win95-footer-btns">
                 <button class="btn btn-ghost" id="btnVerificarDre">Verificar configuração</button>
                 <button class="btn btn-primary" id="btnAvancarDre" disabled>Avançar →</button>
@@ -666,10 +680,18 @@ const Screens = (() => {
     document.getElementById("dreIgnoraZeramento").checked = form.ignoraZeramento;
     document.getElementById("drePeriodoAtual").checked = form.periodoAtual;
 
-    // Extenso (decorativo): ao marcar preenche número e texto; ao desmarcar limpa
+    // Extenso: ao marcar preenche número e texto; ao desmarcar limpa
     const extensoCheck = document.getElementById("dreExtenso");
     const extensoNum = document.getElementById("dreExtensoNum");
     const extensoTexto = document.getElementById("dreExtensoTexto");
+
+    // Restaura extenso
+    extensoCheck.checked = form.extenso;
+    if (form.extenso) {
+      extensoNum.value = "1";
+      extensoTexto.value = EXTENSO_TEXTO_DRE;
+    }
+
     extensoCheck.addEventListener("change", () => {
       if (extensoCheck.checked) {
         extensoNum.value = "1";
@@ -721,29 +743,32 @@ const Screens = (() => {
       form.destaqueAnalitica = document.getElementById("dreDestaque").checked;
       form.ignoraZeramento = document.getElementById("dreIgnoraZeramento").checked;
       form.periodoAtual = document.getElementById("drePeriodoAtual").checked;
+      form.extenso = extensoCheck.checked;
 
       atualizarDescricoes();
 
       const resultado = Validators.validarDre(form, config.respostas, empresa.segmento);
-      const corretos = Object.values(resultado).filter(Boolean).length;
-      const total = Object.values(resultado).length;
+      const extensoOk = extensoCheck.checked;
+      const corretos = Object.values(resultado).filter(Boolean).length + (extensoOk ? 1 : 0);
 
       container.querySelectorAll("#dreStepsList li").forEach((li) => {
-        const ok = !!resultado[li.dataset.passo];
+        const ok = li.dataset.passo === PASSO_EXTENSO_DRE ? extensoOk : !!resultado[li.dataset.passo];
         li.classList.toggle("is-ok", ok);
       });
 
       const statusEl = document.getElementById("dreStatus");
-      statusEl.textContent = `${corretos} de ${total} itens corretos`;
-      statusEl.classList.toggle("is-ok", corretos === total);
-      statusEl.classList.toggle("is-pending", corretos !== total);
-      document.getElementById("dreProgresso").textContent = `${corretos} de ${total} corretos`;
+      statusEl.textContent = `${corretos} de ${totalDre} itens corretos`;
+      statusEl.classList.toggle("is-ok", corretos === totalDre);
+      statusEl.classList.toggle("is-pending", corretos !== totalDre);
+      document.getElementById("dreProgresso").textContent = `${corretos} de ${totalDre} corretos`;
 
-      document.getElementById("btnAvancarDre").disabled = !(corretos === total || State.modoLivre);
+      const tudoDre = Object.values(resultado).every(Boolean) && extensoOk;
+      document.getElementById("btnAvancarDre").disabled = !(tudoDre || State.modoLivre);
     }
 
     container.addEventListener("input", atualizar);
     container.addEventListener("change", atualizar);
+    document.getElementById("btnVoltarDre").addEventListener("click", () => Navigation.goTo("balanco"));
     document.getElementById("btnVerificarDre").addEventListener("click", () => {
       atualizar();
       const pendente = container.querySelector("#dreStepsList li:not(.is-ok)");
@@ -771,6 +796,35 @@ const Screens = (() => {
       return `<table class="mini-table"><thead><tr>${cabecalho}</tr></thead><tbody>${linhas}</tbody></table>`;
     }
 
+    function montarTutorialEncerramento() {
+      return `
+        <div class="tut-wrap" id="tutEncerramento">
+          <p class="tut-titulo">Como verificar no sistema (passo a passo):</p>
+          <div class="tut-step is-active" data-step="1">
+            <p class="tut-instrucao"><strong>Passo 1 de 3 —</strong> No menu superior, clique em <strong>Processos</strong> e depois em <strong>"Encerramento do exercício - zeramento..."</strong></p>
+            <div class="tut-img-wrap"><img src="static/img/analise/step1.png" alt="Menu Processos — Encerramento do exercício"></div>
+          </div>
+          <div class="tut-step" data-step="2">
+            <p class="tut-instrucao"><strong>Passo 2 de 3 —</strong> Na janela que abre, clique na <strong>primeira lupa da esquerda para direita</strong> (ícone acima do número da empresa) para consultar os encerramentos já realizados.</p>
+            <div class="tut-img-wrap"><img src="static/img/analise/step2.png" alt="Formulário Encerramento do exercício - zeramento"></div>
+          </div>
+          <div class="tut-step" data-step="3">
+            <p class="tut-instrucao"><strong>Passo 3 de 3 —</strong> Na consulta de encerramentos, analise as informações conforme o enquadramento da empresa:</p>
+            <ul class="tut-lista">
+              <li>Lucro Real ou Presumido → encerra <strong>trimestralmente</strong> (contas 680, 681, 682, 683)</li>
+              <li>Simples Nacional → encerra <strong>anualmente</strong> (conta 684)</li>
+              <li>Verifique as colunas <em>Data inicial</em>, <em>Data final</em> e <em>Complemento</em> para confirmar o período correto.</li>
+            </ul>
+            <div class="tut-img-wrap"><img src="static/img/analise/step3.png" alt="Consulta encerramento do exercício"></div>
+          </div>
+          <div class="tut-nav">
+            <button class="btn btn-ghost tut-prev" disabled>← Anterior</button>
+            <span class="tut-indicador">Passo 1 de 3</span>
+            <button class="btn btn-ghost tut-next">Próximo →</button>
+          </div>
+        </div>`;
+    }
+
     container.innerHTML = `
       <div class="screen-head">
         <p class="eyebrow">Sistema Único · ${escapeHtml(State.empresaSelecionada.apelido)}</p>
@@ -794,6 +848,7 @@ const Screens = (() => {
               </div>
               <div class="topico-body">
                 <ul>${topico.detalhes.map((linha) => `<li>${escapeHtml(linha)}</li>`).join("")}</ul>
+                ${topico.id === 1 ? montarTutorialEncerramento() : ""}
                 ${montarTabela(topico.tabela)}
                 <label class="topico-confirm">
                   <input type="checkbox" data-confirma="${topico.id}"> Revisei este ponto
@@ -804,6 +859,7 @@ const Screens = (() => {
           .join("")}
       </div>
       <div class="btn-row">
+        <button class="btn btn-ghost" id="btnVoltarAnalise">← Voltar</button>
         <button class="btn btn-primary" id="btnConcluirTreinamento" disabled>Concluir treinamento</button>
       </div>
     `;
@@ -813,6 +869,27 @@ const Screens = (() => {
         head.closest(".topico").classList.toggle("is-open");
       });
     });
+
+    // Tutorial interativo do tópico 1
+    const tutWrap = document.getElementById("tutEncerramento");
+    if (tutWrap) {
+      function irParaPasso(n) {
+        const steps = tutWrap.querySelectorAll(".tut-step");
+        steps.forEach((s) => s.classList.toggle("is-active", Number(s.dataset.step) === n));
+        tutWrap.querySelector(".tut-indicador").textContent = `Passo ${n} de ${steps.length}`;
+        tutWrap.querySelector(".tut-prev").disabled = n === 1;
+        tutWrap.querySelector(".tut-next").disabled = n === steps.length;
+      }
+      tutWrap.querySelector(".tut-prev").addEventListener("click", () => {
+        const atual = Number(tutWrap.querySelector(".tut-step.is-active").dataset.step);
+        if (atual > 1) irParaPasso(atual - 1);
+      });
+      tutWrap.querySelector(".tut-next").addEventListener("click", () => {
+        const atual = Number(tutWrap.querySelector(".tut-step.is-active").dataset.step);
+        const total = tutWrap.querySelectorAll(".tut-step").length;
+        if (atual < total) irParaPasso(atual + 1);
+      });
+    }
 
     function atualizarProgresso() {
       const total = config.topicos.length;
@@ -835,6 +912,7 @@ const Screens = (() => {
       checkbox.addEventListener("click", (evento) => evento.stopPropagation());
     });
 
+    document.getElementById("btnVoltarAnalise").addEventListener("click", () => Navigation.goTo("dre"));
     document.getElementById("btnConcluirTreinamento").addEventListener("click", () => Navigation.goTo("final"));
 
     atualizarProgresso();
