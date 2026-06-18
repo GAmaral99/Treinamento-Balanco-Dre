@@ -1,0 +1,19 @@
+{
+  "titulo": "Contatos – Departamento Contábil",
+  "contatos": [
+    {
+      "nome": "Tatiana Linardi",
+      "cargo": "Gerente Contábil",
+      "email": "contabil9@mgcontecnica.com.br",
+      "celular": "11 99817-7394"
+    },
+    {
+      "nome": "Renata Cavalheiro",
+      "cargo": "Gerente Contábil",
+      "email": "contabil4@mgcontecnica.com.br",
+      "celular": "11 98073-6134"
+    }
+  ],
+  "endereco": "Edifício Santa Cecília - Av. Vida Nova, 28A - Jardim Maria Rosa, Taboão da Serra - SP, CEP 06764-045",
+  "telefone": "(11) 2575-1800"
+}

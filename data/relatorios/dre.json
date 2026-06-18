@@ -1,0 +1,32 @@
+{
+  "titulo": "Relatório – Demonstração do Resultado do Exercício (DRE)",
+  "janela": "Demonstração do resultado do exercício (DRE)",
+  "passos": [
+    { "id": "empresa", "texto": "Verifique a empresa." },
+    { "id": "periodo", "texto": "Coloque o período desejado." },
+    { "id": "contabilizacao", "texto": "Sempre deixe flegado contabilização \u201cfiscal\u201d." },
+    { "id": "plano", "texto": "Plano de fórmulas: 1 para empresas do varejo e 12 para indústria." },
+    { "id": "formulaInicial", "texto": "Fórmula inicial – 1, Receita Bruta." },
+    { "id": "formulaFinal", "texto": "Fórmula final – 34, Lucro Operacional Líquido." },
+    { "id": "notaExplicativa", "texto": "Nota explicativa – nenhuma." },
+    { "id": "niveis", "texto": "Deixar todos os níveis de contas marcados." },
+    { "id": "ordemContas", "texto": "Flegar Classificação." },
+    { "id": "imprimirConta", "texto": "Flegar Curta." },
+    { "id": "destaqueAnalitica", "texto": "Marque Destaca analítica." },
+    { "id": "ignoraZeramento", "texto": "Marque Ignora zeramento." },
+    { "id": "periodoAtual", "texto": "Marque Período Atual." }
+  ],
+  "respostas": {
+    "contabilizacao": "fiscal",
+    "planoPorSegmento": { "varejo": "1", "industria": "12" },
+    "formulaInicial": "1",
+    "formulaFinal": "34",
+    "notaExplicativa": "nenhuma",
+    "niveis": ["analiticas", "nivel2"],
+    "ordemContas": "classificacao",
+    "imprimirConta": "curta",
+    "destaqueAnalitica": true,
+    "ignoraZeramento": true,
+    "periodoAtual": true
+  }
+}

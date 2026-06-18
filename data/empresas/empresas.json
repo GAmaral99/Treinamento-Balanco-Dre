@@ -1,0 +1,92 @@
+[
+  {
+    "codigo": 1,
+    "apelido": "NOVA PAULISTA",
+    "cnpj": "45.407.004/0001-27",
+    "inscricao": "124.824.793.119",
+    "nome": "NOVA PAULISTA ARTIGOS PARA CHURRASCO LTDA",
+    "enquadramento": "Normal",
+    "segmento": "varejo"
+  },
+  {
+    "codigo": 99,
+    "apelido": "SUP. CATANDUVA",
+    "cnpj": "62.792.502/0001-50",
+    "inscricao": "108.333.427.112",
+    "nome": "SUPERMERCADO CATANDUVA LTDA",
+    "enquadramento": "Normal",
+    "segmento": "varejo"
+  },
+  {
+    "codigo": 119,
+    "apelido": "SUP.BEIRA ALTA",
+    "cnpj": "45.502.210/0001-73",
+    "inscricao": "149.709.937.110",
+    "nome": "SUPERMERCADO BEIRA ALTA LTDA",
+    "enquadramento": "Normal",
+    "segmento": "varejo"
+  },
+  {
+    "codigo": 305,
+    "apelido": "Sincoplastic Industr",
+    "cnpj": "00.632.761/0001-83",
+    "inscricao": "114.512.019.114",
+    "nome": "Sincoplastic Industria e Comercio de Plasticos Ltda",
+    "enquadramento": "ME",
+    "segmento": "industria"
+  },
+  {
+    "codigo": 463,
+    "apelido": "CARMOACO COMERCIAL",
+    "cnpj": "96.380.548/0001-83",
+    "inscricao": "675.054.511.117",
+    "nome": "CARMOACO COMERCIAL DE FERROS E PRESTACAO DE SERVICOS EIRELI",
+    "enquadramento": "EPP",
+    "segmento": "industria"
+  },
+  {
+    "codigo": 470,
+    "apelido": "JARDIM BEATRIZ",
+    "cnpj": "59.418.954/0001-61",
+    "inscricao": "675.035.679.110",
+    "nome": "SUPERMERCADO JARDIM BEATRIZ LTDA",
+    "enquadramento": "Normal",
+    "segmento": "varejo"
+  },
+  {
+    "codigo": 861,
+    "apelido": "SUP.CASTELO (MATRIZ)",
+    "cnpj": "04.205.831/0001-71",
+    "inscricao": "370.109.412.115",
+    "nome": "SUPERMERCADO CASTELO DA SERRA LTDA",
+    "enquadramento": "Normal",
+    "segmento": "varejo"
+  },
+  {
+    "codigo": 866,
+    "apelido": "SUPERMERCADO UMUARAM",
+    "cnpj": "04.222.351/0001-06",
+    "inscricao": "116.062.474.119",
+    "nome": "SUPERMERCADO UMUARAMA LTDA.",
+    "enquadramento": "Normal",
+    "segmento": "varejo"
+  },
+  {
+    "codigo": 885,
+    "apelido": "BRUXELAS (MATRIZ)",
+    "cnpj": "02.146.138/0001-29",
+    "inscricao": "298.134.554.110",
+    "nome": "BRUXELAS DISTRIBUIDORA E IMPORTADORA LTDA",
+    "enquadramento": "Normal",
+    "segmento": "industria"
+  },
+  {
+    "codigo": 2369,
+    "apelido": "J.B. FERREIRA",
+    "cnpj": "60.979.309/0001-05",
+    "inscricao": "370.109.412.190",
+    "nome": "J. B. FERREIRA & CIA LTDA",
+    "enquadramento": "Normal",
+    "segmento": "varejo"
+  }
+]

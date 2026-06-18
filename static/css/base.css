@@ -1,0 +1,176 @@
+/* =========================================================
+   BASE.CSS — tokens, reset e estrutura geral
+   ========================================================= */
+
+:root {
+  /* Paleta — "ledger vermelho" inspirado na identidade MG Contécnica */
+  --paper: #f4f1ea;
+  --paper-raised: #ffffff;
+  --ink: #221d1b;
+  --ink-soft: #6b6259;
+  --line: #ddd4c6;
+  --line-strong: #c7bcab;
+
+  --primary: #8c1f2f;
+  --primary-dark: #511019;
+  --primary-tint: #f5e3e0;
+
+  --chrome: #262c40;
+  --chrome-light: #3a4260;
+  --chrome-dot: #d9534f;
+
+  --success: #2f6f4e;
+  --success-tint: #e3efe5;
+  --pending: #a9710f;
+  --pending-tint: #f7eedc;
+
+  --font-display: "Lora", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 20px;
+
+  --shadow-card: 0 1px 2px rgba(34, 29, 27, 0.06), 0 8px 24px -12px rgba(34, 29, 27, 0.18);
+  --shadow-window: 0 24px 60px -20px rgba(20, 16, 30, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+a {
+  color: var(--primary);
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--chrome-light);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   Estrutura geral do app
+   --------------------------------------------------------- */
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#screens {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px 64px;
+}
+
+.screen {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-top: 36px;
+}
+
+.screen[hidden] {
+  display: none;
+}
+
+.screen-head {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0 0 8px;
+}
+
+.screen-head h2 {
+  font-size: 28px;
+  color: var(--ink);
+}
+
+.screen-head .subtitulo {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  max-width: 640px;
+}
+
+.modo-livre-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--pending-tint);
+  color: var(--pending);
+  border: 1px solid rgba(169, 113, 15, 0.3);
+  border-radius: 100px;
+  padding: 6px 14px;
+  margin-top: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  #screens {
+    padding: 0 16px 48px;
+  }
+  .screen-head h2 {
+    font-size: 23px;
+  }
+}

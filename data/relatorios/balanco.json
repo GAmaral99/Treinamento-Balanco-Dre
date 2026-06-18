@@ -1,0 +1,24 @@
+{
+  "titulo": "Relatório – Balanço Patrimonial duas colunas",
+  "janela": "Relatório balanço patrimonial duas colunas",
+  "passos": [
+    { "id": "empresa", "texto": "Verifique a empresa." },
+    { "id": "periodo", "texto": "Coloque o período desejado." },
+    { "id": "contabilizacao", "texto": "Sempre deixe flegado contabilização \u201cfiscal\u201d." },
+    { "id": "contaInicial", "texto": "Conta inicial – 1 / 01-Ativo." },
+    { "id": "contaFinal", "texto": "Conta final – 1140 / 05.1.1.01.001 – Resultado do Exercício." },
+    { "id": "niveis", "texto": "Nível da conta, até o 4." },
+    { "id": "consolidadas", "texto": "Marque a opção Contas consolidadas." },
+    { "id": "formulas", "texto": "Marque a opção Fórmulas." },
+    { "id": "somarFormulas", "texto": "Marque a opção Somar fórmulas as títulos." }
+  ],
+  "respostas": {
+    "contabilizacao": "fiscal",
+    "contaInicial": "1",
+    "contaFinal": "1140",
+    "niveis": ["analiticas", "nivel2", "nivel3", "nivel4"],
+    "consolidadas": true,
+    "formulas": true,
+    "somarFormulas": true
+  }
+}

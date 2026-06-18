@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios Contábeis · Sistema Único - MG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/base.css">
+  <link rel="stylesheet" href="static/css/components.css">
+</head>
+<body>
+  <div id="app">
+
+    <nav class="rail" id="rail" hidden>
+      <div class="rail-inner">
+        <div class="rail-step" data-screen="login"><span class="dot">1</span>Login</div>
+        <span class="rail-sep"></span>
+        <div class="rail-step" data-screen="empresa"><span class="dot">2</span>Empresa</div>
+        <span class="rail-sep"></span>
+        <div class="rail-step" data-screen="balanco"><span class="dot">3</span>Balanço</div>
+        <span class="rail-sep"></span>
+        <div class="rail-step" data-screen="dre"><span class="dot">4</span>DRE</div>
+        <span class="rail-sep"></span>
+        <div class="rail-step" data-screen="analise"><span class="dot">5</span>Análise</div>
+        <span class="rail-sep"></span>
+        <div class="rail-step" data-screen="final"><span class="dot">6</span>Concluído</div>
+      </div>
+    </nav>
+
+    <p id="avisoCarregamento" class="error-msg" hidden style="text-align:center; padding: 10px 24px 0;"></p>
+
+    <main id="screens">
+
+      <!-- Tela 1: Capa -->
+      <section class="screen" data-screen="cover">
+        <div class="hero">
+          <div class="hero-content">
+            <p class="eyebrow">MG Contécnica · Departamento Contábil</p>
+            <h1>Relatórios Contábeis</h1>
+            <p class="lede">Confie sua empresa em uma das maiores contabilidades do país. Há 37 anos ajudando empresas a se desenvolverem.</p>
+            <div class="btn-row">
+              <button class="btn btn-primary" id="btnIniciar">Iniciar treinamento</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tela 2: Login -->
+      <section class="screen" data-screen="login" hidden>
+        <div class="login-wrap">
+          <div class="card login-card">
+            <div class="login-brand">
+              <span class="badge"><span></span></span>
+              <strong>ÚNICO · Sistema Único - MG</strong>
+            </div>
+            <form id="formLogin">
+              <div class="field">
+                <label for="loginUsuario">Usuário</label>
+                <input type="text" id="loginUsuario" autocomplete="username" required>
+              </div>
+              <div class="field">
+                <label for="loginSenha">Senha</label>
+                <input type="password" id="loginSenha" autocomplete="current-password" required>
+              </div>
+              <p class="error-msg" id="loginErro"></p>
+              <div class="btn-row">
+                <button type="submit" class="btn btn-primary" id="btnEntrar">Entrar</button>
+              </div>
+            </form>
+            <p class="hint">Ambiente de treinamento: informe qualquer usuário e senha para continuar.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tela: Introdução / descrição da atividade -->
+      <section class="screen" data-screen="intro" hidden>
+        <div class="screen-head">
+          <p class="eyebrow">Antes de começar</p>
+          <h2>O que você vai fazer neste treinamento</h2>
+          <p class="subtitulo">Siga as etapas abaixo na ordem. Cada uma só libera a próxima quando estiver correta.</p>
+        </div>
+        <div class="card">
+          <ul class="steps-list">
+            <li><span class="mark">1</span><span>Escolher a empresa para a qual os relatórios serão gerados.</span></li>
+            <li><span class="mark">2</span><span>Configurar o relatório de <strong>Balanço Patrimonial duas colunas</strong>, seguindo o passo a passo.</span></li>
+            <li><span class="mark">3</span><span>Configurar o relatório de <strong>Demonstração do Resultado do Exercício (DRE)</strong>.</span></li>
+            <li><span class="mark">4</span><span>Revisar o checklist de pontos de atenção antes de fechar o balanço.</span></li>
+          </ul>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="btnContinuarIntro">Continuar</button>
+        </div>
+      </section>
+
+      <!-- Tela 3: Seleção de empresa -->
+      <section class="screen" data-screen="empresa" hidden>
+        <div id="empresaContainer"></div>
+      </section>
+
+      <!-- Tela 4/5: Balanço Patrimonial -->
+      <section class="screen" data-screen="balanco" hidden>
+        <div id="balancoContainer"></div>
+      </section>
+
+      <!-- Tela 6/7/8: DRE -->
+      <section class="screen" data-screen="dre" hidden>
+        <div id="dreContainer"></div>
+      </section>
+
+      <!-- Tela 9-16: Análise do balanço -->
+      <section class="screen" data-screen="analise" hidden>
+        <div id="analiseContainer"></div>
+      </section>
+
+      <!-- Tela 17: Conclusão / contatos -->
+      <section class="screen" data-screen="final" hidden>
+        <div id="finalContainer"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="static/js/api.js"></script>
+  <script src="static/js/state.js"></script>
+  <script src="static/js/validators.js"></script>
+  <script src="static/js/screens.js"></script>
+  <script src="static/js/main.js"></script>
+</body>
+</html>

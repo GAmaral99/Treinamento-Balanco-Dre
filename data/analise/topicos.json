@@ -1,0 +1,100 @@
+{
+  "titulo": "Balanço Patrimonial duas colunas – Análise",
+  "subtitulo": "O que analisar no balanço?",
+  "topicos": [
+    {
+      "id": 1,
+      "titulo": "Encerramento do período",
+      "resumo": "Verificar se o encerramento do período em questão já foi processado.",
+      "detalhes": [
+        "Processo: Encerramento.",
+        "Empresas do Lucro Real e Presumido são encerradas por trimestre.",
+        "01/01 a 31/03 – conta 680",
+        "01/04 a 30/06 – conta 681",
+        "01/07 a 30/09 – conta 682",
+        "01/10 a 31/12 – conta 683",
+        "Empresas do Simples são encerradas anualmente — 01/01 a 31/12 – conta 684."
+      ],
+      "tabela": null
+    },
+    {
+      "id": 2,
+      "titulo": "Ativo = Passivo",
+      "resumo": "Verificar se o Ativo e o Passivo estão batendo com o mesmo valor.",
+      "detalhes": [
+        "As duas colunas do balanço (Ativo e Passivo) sempre devem fechar no mesmo total."
+      ],
+      "tabela": {
+        "colunas": ["Nome", "Saldo atual", "Nome", "Saldo atual"],
+        "linhas": [
+          ["ATIVO", "19.969.907,48", "PASSIVO", "19.969.907,48"],
+          ["ATIVO CIRCULANTE", "18.083.410,72", "PASSIVO CIRCULANTE", "18.049.723,67"]
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "titulo": "Contas viradas",
+      "resumo": "Verificar contas com sinal de negativo entre parênteses.",
+      "detalhes": [
+        "As únicas contas que podem aparecer com sinal negativo, entre parênteses ( - ), são as contas redutoras.",
+        "Exemplos: Depreciação, Amortização, Juros a transcorrer, etc."
+      ],
+      "tabela": {
+        "colunas": ["Conta", "Saldo atual"],
+        "linhas": [
+          ["(-) DEPRECIAÇÃO ACUMULADA", "(1.898.753,53)"],
+          ["ATIVO INTANGÍVEL", "0,00"],
+          ["(-) AMORTIZAÇÕES ACUMULADAS", "(1.340,00)"]
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "titulo": "Análise do PL (Patrimônio Líquido)",
+      "resumo": "Verificar se prejuízo ou distribuição de lucro aparecem corretamente como redutores do PL.",
+      "detalhes": [
+        "Se a empresa teve prejuízo no exercício, o PL aparecerá entre parênteses.",
+        "Se houve distribuição de lucro, também aparecerá como redutora do PL ( - )."
+      ],
+      "tabela": {
+        "colunas": ["Conta", "Saldo atual"],
+        "linhas": [
+          ["PATRIMÔNIO LÍQUIDO", "(1.079.805,26)"],
+          ["PREJUÍZOS ACUMULADOS", "(1.288.766,49)"],
+          ["RESULTADO DO EXERCÍCIO", "(26.038,77)"]
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "titulo": "Estoque",
+      "resumo": "O estoque do balanço deve ser igual ao estoque final da DRE.",
+      "detalhes": [
+        "Compare o valor de Estoques no Balanço com o (-) Estoque Final apresentado na DRE."
+      ],
+      "tabela": {
+        "colunas": ["Origem", "Conta", "Saldo"],
+        "linhas": [
+          ["Balanço", "ESTOQUES", "6.271.878,35"],
+          ["DRE", "(-) Estoque Final", "(6.271.878,35)"]
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "titulo": "Lucro ou prejuízo",
+      "resumo": "O lucro (ou prejuízo) do balanço deve ser igual ao resultado apurado na DRE.",
+      "detalhes": [
+        "Compare o Resultado do Exercício no Balanço com o Lucro Operacional Líquido na DRE."
+      ],
+      "tabela": {
+        "colunas": ["Origem", "Conta", "Saldo"],
+        "linhas": [
+          ["Balanço", "RESULTADO DO EXERCÍCIO", "8.593,55"],
+          ["DRE", "34 LUCRO OPERACIONAL LÍQUIDO", "8.593,55"]
+        ]
+      }
+    }
+  ]
+}
