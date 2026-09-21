@@ -44,6 +44,9 @@ def montar():
         f"  <style>\n{css}\n  </style>",
     )
 
+    # 1b) Logo: favicon e imagem do hero viram data URI (sem arquivo externo)
+    html = html.replace("logo.png", imagem_base64("logo.png"))
+
     # 2) Dados: embute os 5 JSONs como constantes JS
     dados_js = (
         "const EMPRESAS_DATA = " + ler_json_compacto("data/empresas/empresas.json") + ";\n"
